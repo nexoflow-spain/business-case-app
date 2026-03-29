@@ -2,6 +2,8 @@
 
 Web app con un asistente de IA con personalidad "ahuevada" que guía al usuario en la creación y seguimiento de business cases.
 
+**🚀 Demo en vivo:** [https://business-case-app.up.railway.app](https://business-case-app.up.railway.app) (ejemplo)
+
 ## Características
 
 - 🤖 **Asistente IA Ahuevado**: Un asistente con personalidad, humor y actitud que te guía paso a paso
@@ -13,29 +15,37 @@ Web app con un asistente de IA con personalidad "ahuevada" que guía al usuario 
 
 - **Frontend**: React + TypeScript + Vite + Tailwind CSS
 - **Backend**: Node.js + Express + TypeScript
-- **Base de datos**: SQLite + Prisma ORM
+- **Base de datos**: PostgreSQL + Prisma ORM
 - **IA**: OpenAI GPT-4 para el asistente
 
-## Estructura del Proyecto
+## Despliegue Rápido
 
-```
-business-case-app/
-├── client/          # Frontend React
-├── server/          # Backend Express
-├── prisma/          # Esquema de base de datos
-└── README.md
-```
+### Opción 1: Railway (Recomendada)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/xyz)
 
-## Instalación
+1. Cuenta en [Railway](https://railway.app)
+2. Fork este repo
+3. Deploy desde GitHub
+4. Agrega PostgreSQL y variables de entorno
+
+### Opción 2: Render
+1. Cuenta en [Render](https://render.com)
+2. New Web Service → conecta tu repo
+3. Build: `npm install && cd client && npm install && npm run build`
+4. Start: `cd server && npm start`
+
+**📖 [Guía completa de despliegue](DEPLOY.md)**
+
+## Instalación Local
 
 ```bash
-# Instalar dependencias del proyecto raíz
+# Clonar
+git clone https://github.com/nexoflow-spain/business-case-app.git
+cd business-case-app
+
+# Instalar dependencias
 npm install
-
-# Instalar dependencias del servidor
 cd server && npm install
-
-# Instalar dependencias del cliente
 cd ../client && npm install
 
 # Configurar variables de entorno
@@ -47,34 +57,60 @@ cp .env.example .env
 npx prisma migrate dev --name init
 npx prisma generate
 
-# Volver a la raíz y ejecutar en modo desarrollo
+# Ejecutar
 cd ..
 npm run dev
 ```
 
-## Desarrollo
+**Frontend:** http://localhost:5173  
+**Backend:** http://localhost:3001
+
+## Scripts disponibles
 
 ```bash
-# Ejecutar frontend y backend simultáneamente
-npm run dev
-
-# Ejecutar solo el servidor
-npm run server
-
-# Ejecutar solo el cliente
-npm run client
+npm run dev      # Frontend + Backend
+npm run server   # Solo backend
+npm run client   # Solo frontend
+npm run build    # Build de producción
 ```
 
 ## Variables de Entorno
 
-Crea un archivo `.env` en la carpeta `server/` con:
+Crea `.env` en la carpeta `server/`:
 
 ```
 PORT=3001
-OPENAI_API_KEY=tu_api_key_aqui
-DATABASE_URL="file:./dev.db"
+OPENAI_API_KEY=sk-...
+DATABASE_URL="postgresql://..."
+NODE_ENV=development
 ```
+
+## Estructura del Proyecto
+
+```
+business-case-app/
+├── client/          # Frontend React + Vite
+├── server/          # Backend Express
+│   ├── src/
+│   │   ├── routes/  # API routes
+│   │   ├── index.ts # Entry point
+│   └── prisma/      # Database schema
+├── DEPLOY.md        # Guía de despliegue
+└── README.md
+```
+
+## Screenshots
+
+*(Próximamente)*
+
+## Contribuir
+
+1. Fork el proyecto
+2. Crea tu feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit (`git commit -m 'Add amazing feature'`)
+4. Push (`git push origin feature/amazing-feature`)
+5. Abre un Pull Request
 
 ## Licencia
 
-MIT
+MIT © [nexoflow](https://github.com/nexoflow-spain)

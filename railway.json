@@ -1,0 +1,12 @@
+{
+  "name": "business-case-app",
+  "version": "1.0.0",
+  "description": "Web app con asistente IA ahuevado y sistema de business case",
+  "scripts": {
+    "build": "cd client && npm install && npm run build",
+    "start": "cd server && npm install && npx prisma migrate deploy && npx prisma generate && npm start"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
